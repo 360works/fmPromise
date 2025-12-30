@@ -148,32 +148,32 @@ const server = http.createServer(async (request, response) => {
 			let html = await buildModule(modulePath, shouldMinify, configParam);
 			if (useLiveReload) {
 				const liveReloadScript = `
-					<script>
-						console.log('[Live Reload] Connecting to dev server...');
-						const eventSource = new EventSource('/events');
-						eventSource.onmessage = async function(event) {
-							if (event.data === 'reload') {
-								try {
-									// register the webViewer as modified in the global fmPromise variable
-									await fmPromise.performScript('fmPromise.onLiveReload', {
-										webViewerName: fmPromise.webViewerName, 
-										path : '${modulePath}'
-									});
-								} catch (error) {
-									console.warn('Unable to set $$FMPROMISE_MODIFIED_WEBVIEWERS', error);
-								}
-								console.log('[Live Reload] Reloading page...');
-								window.location.reload();
-							}
-						};
-						eventSource.onerror = function(err) {
-							console.error('[Live Reload] Connection error:', err);
-						};
-					</script>
-				`;
+							<script>
+								console.log('[Live Reload] Connecting to dev server...');
+								const eventSource = new EventSource('/events');
+								eventSource.onmessage = async function(event) {
+									if (event.data === 'reload') {
+										try {
+											// register the webViewer as modified in the global fmPromise variable
+											await fmPromise.performScript('fmPromise.onLiveReload', {
+												webViewerName: fmPromise.webViewerName, 
+												path : '${modulePath}'
+											});
+										} catch (error) {
+											console.warn('Unable to set $$FMPROMISE_MODIFIED_WEBVIEWERS', error);
+										}
+										console.log('[Live Reload] Reloading page...');
+										window.location.reload();
+									}
+								};
+								eventSource.onerror = function(err) {
+									console.error('[Live Reload] Connection error:', err);
+								};
+							</script>
+						`;
 				html += liveReloadScript
 			}
-			response.writeHead(200, {'Content-Type': 'text/html'});
+			response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
 			response.end(html);
 
 			// --- NOT FOUND ---

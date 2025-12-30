@@ -1,6 +1,6 @@
 {
   "name": "@360works/fmpromise",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "A modern JS toolkit for FileMaker Web Viewers, including a dev server and type generation.",
   "type": "module",
   "bin": {
@@ -10,6 +10,7 @@
     "build": "tsc && copyfiles -u 2 \"src/templates/**/*\" dist/templates",
     "prepublishOnly": "npm run build",
     "publish": "npm publish",
+    "link": "npm link",
     "dev": "nodemon --watch src --ext ts --exec npx tsx src/server.ts"
   },
   "repository": {
