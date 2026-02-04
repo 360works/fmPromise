@@ -27,11 +27,15 @@ In addition, fmPromise offers more convenient data structures for returned value
 
 # Using fmPromise
 
-Install the fmPromise Add-On, restart FileMaker, and add this to your FileMaker solution's add-ons. 
+**Install the fmPromise Add-On**
 
 You can [download the fmPromise Add-On here](https://store.360works.com/add-product/FMPROMISE):
 
 https://store.360works.com/add-product/FMPROMISE
+
+Restart FileMaker
+
+Add this to your FileMaker solution's add-ons. 
 
 Drag an fmPromise module to your FileMaker layout, enter Browser mode, and follow the instructions there.
 
