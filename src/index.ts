@@ -398,3 +398,6 @@ globalThis.fmPromise_Resolve = fmPromise._resolve;
 globalThis.fmPromise_Reject = fmPromise._reject;
 
 export default fmPromise;
+
+export { validateFmPromiseConfig, ConfigValidationError } from './config-validator.js';
+export type { ConfigSchema, ParamDef, ScalarParam, ArrayParam, ObjectParam, ConfigResolved, ScalarTypeName } from './config-validator.js';

@@ -57,6 +57,9 @@ word "ERROR".
 * Each FileMaker script call has an id, so you can fire off multiple script calls to FileMaker and they will resolve correctly. Generally one-at-a-time execution, given FileMaker's single-threaded nature.
 * You can make script calls as soon as your `<script type="module">` tag finishes loading, since `fmPromise` takes care of polling for the `window.FileMaker` object.
 
+# Need Help?
+
+**Need a TypeScript/web wizard?** [360Works](https://360works.com) offers custom FileMaker web viewer development. We built fmPromise — we know how to put it to work in your solution.
 
 # Debugging
 

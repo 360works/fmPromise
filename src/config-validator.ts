@@ -172,15 +172,15 @@ function scalarPlaceholder(key: string, type: ScalarTypeName): string {
 		case 'table':
 			return `GetFieldName ( ReplaceMe::${key} )`;
 		case 'layout':
-			return `"Enter layout name"`;
+			return `""`;
 		case 'string':
-			return `"Enter ${key} value"`;
+			return `""`;
 		case 'number':
-			return `0`;
+			return ``;
 		case 'boolean':
 			return `False`;
 		case 'json':
-			return `"[]"`;
+			return `""`;
 	}
 }
 
@@ -196,18 +196,19 @@ function generateSchemaCalc(schema: ConfigSchema, indent: string): string {
 
 	for (const key of Object.keys(schema)) {
 		const def = schema[key];
+		const descComment = def.description ? ` /* ${def.description} */` : '';
 
 		if (def.type === 'object') {
 			const inner = generateSchemaCalc(def.properties, indent + '  ');
-			entries.push(`[ "${key}" ;\n${indent}      JSONSetElement ( "" ;\n${inner}\n${indent}    ) ; JSONRaw ]`);
+			entries.push(`[ "${key}"${descComment} ;\n${indent}      JSONSetElement ( "" ;\n${inner}\n${indent}    ) ; JSONRaw ]`);
 		} else if (def.type === 'array') {
 			const itemPlaceholder = scalarPlaceholder(key, def.items);
 			const itemJsonType = scalarJsonType(def.items);
-			entries.push(`[ "${key}" ; JSONSetElement ( "[]" ; [ 0 ; ${itemPlaceholder} ; ${itemJsonType} ] ) ; JSONRaw ]`);
+			entries.push(`[ "${key}"${descComment} ; JSONSetElement ( "[]" ; [ 0 ; ${itemPlaceholder} ; ${itemJsonType} ] ) ; JSONRaw ]`);
 		} else {
 			const placeholder = scalarPlaceholder(key, def.type);
 			const jsonType = scalarJsonType(def.type);
-			entries.push(`[ "${key}" ; ${placeholder} ; ${jsonType} ]`);
+			entries.push(`[ "${key}"${descComment} ; ${placeholder} ; ${jsonType} ]`);
 		}
 	}
 
