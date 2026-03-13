@@ -1,6 +1,6 @@
 {
   "name": "@360works/fmpromise",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "A modern JS toolkit for FileMaker Web Viewers, including a dev server and type generation.",
   "type": "module",
   "bin": {
